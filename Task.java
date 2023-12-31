@@ -3,7 +3,7 @@ public abstract class Task {
     private String name;
     private String dueDate;
     private  int category; //1:academical, 2: work, 3: finance, 4:leisure
-    private int priority;
+    private int priority; //1: not that important, 2: important, 3: urgent - tentar relacionar com alguma etiqueta de cor para o 2 e 3
     private int status; //1: to be done (yellow), 2: done (green), 3:past due (red)
 
     public Task(String name, String dueDate, int category, int priority, int status){
