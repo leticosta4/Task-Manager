@@ -1,3 +1,4 @@
+package items;
 public class Academical extends Task{
     private String subject;
     private String activityType;

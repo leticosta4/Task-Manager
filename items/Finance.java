@@ -1,3 +1,4 @@
+package items;
 public class Finance extends Task{
     private float value;
     private String transaction;

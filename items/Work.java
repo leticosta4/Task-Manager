@@ -1,3 +1,4 @@
+package items;
 public class Work extends Task{
     private int type; //1: job, 2: home
 

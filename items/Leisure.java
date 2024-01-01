@@ -1,3 +1,4 @@
+package items;
 public class Leisure extends Task{
     private String place; //se aplicavel
     private int duration;
