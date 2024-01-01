@@ -1,17 +1,17 @@
 package items;
 public class Work extends Task{
-    private int type; //1: job, 2: home
+    private int workType; //1: job, 2: home
 
-    public Work(String name, String dueDate, int category, int priority, int status, int type){
+    public Work(String name, String dueDate, int category, int priority, int status, int workType){
         super(name, dueDate, category, priority, status);
-        this.setType(type);
+        this.setWorkType(workType);
     }
 
-    public int getType() {
-        return type;
+    public int getWorkType() {
+        return workType;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setWorkType(int workType) {
+        this.workType = workType;
     }
 }

@@ -1,7 +1,7 @@
 //import java.time;
 package items;
 
-public abstract class Task {
+public abstract class Task{
     private String name;
     private String dueDate;
     private  int category; //1:academical, 2: work, 3: finance, 4:leisure
