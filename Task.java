@@ -35,7 +35,7 @@ public abstract class Task {
 
     public void setCategory(int category) {
         this.category = category;
-    }
+    } //vai ser so para o ticar como done ou chamada no metodo que verifica se ta atrasada tambem?
     public int getPriority() {
         return priority;
     }
