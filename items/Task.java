@@ -3,16 +3,16 @@ package items;
 
 public abstract class Task{
     private String name;
-    private String dueDate;
-    private  int category; //1:academical, 2: work, 3: finance, 4:leisure
-    private int priority; //1: not that important, 2: important, 3: urgent - tentar relacionar com alguma etiqueta de cor para o 2 e 3
-    private int status; //1: to be done (yellow), 2: done (green), 3:past due (red)
+    private String dueDate; //receber em string e depois parsear p o java.time
+    private  String category; //1:academical, 2: work, 3: finance, 4:leisure
+    private int priorityLevel; //1: not that important, 2: important, 3: urgent - tentar relacionar com alguma etiqueta de cor para o 2 e 3
+    private String status; //1: to be done (yellow), 2: done (green), 3:past due (red)
 
-    public Task(String name, String dueDate, int category, int priority, int status){
+    public Task(String name, String dueDate, String category, int priorityLevel, String status){
         this.name = name;
         this.dueDate = dueDate;
         this.category = category;
-        this.priority = priority;
+        this.priorityLevel = priorityLevel;
         this.status = status;
     }
 
@@ -31,26 +31,35 @@ public abstract class Task{
         this.dueDate = dueDate;
     }
 
-    public int getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(int category) {
+    public void setCategory(String category) {
         this.category = category;
-    } //vai ser so para o ticar como done ou chamada no metodo que verifica se ta atrasada tambem?
-    public int getPriority() {
-        return priority;
+    }
+    public int getPriorityLevel() {
+        return priorityLevel;
     }
 
-    public void setPriority(int priority) {
-        this.priority = priority;
+    public void setPriorityLevel(int priorityLevel) {
+        this.priorityLevel = priorityLevel;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
+    } //vai ser so para o ticar como done ou chamada no metodo que verifica se ta atrasada tambem?
+
+    @Override
+    public String toString(){
+        return (" Task 1:" + getName() +
+                "Due date:" + getDueDate() +
+                "Category:" + getCategory() +
+                "Priority level:" + getPriorityLevel() +
+                "Status:" + getStatus());
     }
 }

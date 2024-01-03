@@ -4,8 +4,8 @@ public class Finance extends Task{
     private String transaction;
     private String account;
 
-    public Finance(String name, String dueDate, int category, int priority, int status, float value, String transaction, String account){
-        super(name, dueDate, category, priority, status);
+    public Finance(String name, String dueDate, String category, int priorityLevel, String status, float value, String transaction, String account){
+        super(name, dueDate, category, priorityLevel, status);
         this.value = value;
         this.transaction = transaction;
         this.account = account;
@@ -30,5 +30,13 @@ public class Finance extends Task{
 
     public void setAccount(String account) {
         this.account = account;
+    }
+
+    @Override
+    public String toString() {
+        return (super.toString() +
+                "Transaction value:" +  getValue() +
+                "Transaction type:" + getTransaction() +
+                "Account:" + getAccount());
     }
 }

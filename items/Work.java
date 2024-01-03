@@ -2,8 +2,8 @@ package items;
 public class Work extends Task{
     private int workType; //1: job, 2: home
 
-    public Work(String name, String dueDate, int category, int priority, int status, int workType){
-        super(name, dueDate, category, priority, status);
+    public Work(String name, String dueDate, String category, int priorityLevel, String status, int workType){
+        super(name, dueDate, category, priorityLevel, status);
         this.setWorkType(workType);
     }
 
@@ -13,5 +13,11 @@ public class Work extends Task{
 
     public void setWorkType(int workType) {
         this.workType = workType;
+    }
+
+    @Override
+    public String toString(){
+        return(super.toString() +
+                "Work type:" + getWorkType());
     }
 }
