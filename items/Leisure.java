@@ -34,9 +34,11 @@ public class Leisure extends Task{
 
     @Override
     public String toString() {
-        return (super.toString() +
-                "Place:" + getPlace() +
-                "Duration:" +  getDuration() +
-                "Company:" + getCompany()); //talvez mudar depois para o caso de ser apicavel ou nao place e company
+        return String.format(super.toString() + """
+                    Place: %s
+                    Duration: %d hours
+                    Company: %s
+                    
+                """, this.place, this.duration, this.company);
     }
 }

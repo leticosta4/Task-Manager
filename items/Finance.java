@@ -1,20 +1,23 @@
 package items;
+
+import java.lang.invoke.StringConcatFactory;
+
 public class Finance extends Task{
-    private float value;
+    private double value;
     private String transaction;
     private String account;
 
-    public Finance(String name, String dueDate, String category, int priorityLevel, String status, float value, String transaction, String account){
+    public Finance(String name, String dueDate, String category, int priorityLevel, String status, double value, String transaction, String account){
         super(name, dueDate, category, priorityLevel, status);
         this.value = value;
         this.transaction = transaction;
         this.account = account;
     }
-    public float getValue() {
+    public double getValue() {
         return value;
     }
 
-    public void setValue(float value) {
+    public void setValue(double value) {
         this.value = value;
     }
     public String getTransaction(){
@@ -34,9 +37,11 @@ public class Finance extends Task{
 
     @Override
     public String toString() {
-        return (super.toString() +
-                "Transaction value:" +  getValue() +
-                "Transaction type:" + getTransaction() +
-                "Account:" + getAccount());
+        return String.format(super.toString() + """
+                    Transaction value: %f
+                    Transaction type: %s
+                    Account: %s
+                    
+                """, this.value, this.transaction, this.account);
     }
 }

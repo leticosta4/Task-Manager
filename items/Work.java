@@ -17,7 +17,9 @@ public class Work extends Task{
 
     @Override
     public String toString(){
-        return(super.toString() +
-                "Work type:" + getWorkType());
+        return String.format(super.toString() + """
+                            Work type: %d
+                        
+                        """, this.workType);
     }
 }

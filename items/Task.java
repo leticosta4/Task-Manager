@@ -56,10 +56,12 @@ public abstract class Task{
 
     @Override
     public String toString(){
-        return (" Task 1:" + getName() +
-                "Due date:" + getDueDate() +
-                "Category:" + getCategory() +
-                "Priority level:" + getPriorityLevel() +
-                "Status:" + getStatus());
+        return String.format("""
+                    Task: %s
+                    Due date: %s
+                    Category: %s
+                    Priority level: %d
+                    Status: %s
+                """, this.name, this.dueDate, this.category, this.priorityLevel, this.status);
     }
 }

@@ -26,8 +26,10 @@ public class Academical extends Task{
 
     @Override
     public String toString(){
-        return (super.toString() +
-                "Subject:" + getSubject() +
-                "Activity type:" + getActivityType());
+        return String.format(super.toString() + """
+                    Subject: %s
+                    Activity type: %s
+                    
+                """, this.subject, this.activityType);
     }
 }
