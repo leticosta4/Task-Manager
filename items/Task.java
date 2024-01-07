@@ -55,7 +55,7 @@ public abstract class Task{
     } //vai ser so para o ticar como done ou chamada no metodo que verifica se ta atrasada tambem?
 
     @Override
-    public String toString(){
+    public String toString(){ //vai ser o exibir da interface grafica - ou provavelmente a parte que esta sempre presente
         return String.format("""
                     Task: %s
                     Due date: %s
