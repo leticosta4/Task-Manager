@@ -3,12 +3,16 @@ package items;
 import java.util.ArrayList;
 
 public class Ambiente {
-    ArrayList <Task> conjunct = new ArrayList<Task>();
+    public ArrayList <Task> conjunct = new ArrayList<Task>();
+    private ArrayList <Task> doneTasks = new ArrayList<Task>(); //talvez depois preceiise de um getter
+    //talvez depois adicionar um arraylist de tasks atrasadas
 
-    int i;
     public ArrayList<Task> getConjunct() { //e so o getter basico mesmo
         return conjunct;
     }
+
+    //public ArrayList<Task> getDoneTasks(){ return doneTasks; }
+
     public int whichTaskType(String category){
         //identificando qual o tipo de task para instaciar a subclasse certa
         if(category == "Academical"){
@@ -20,29 +24,19 @@ public class Ambiente {
         } else{
             return 4;
         }
-    }
+    } //usado na criaçao e ediçao de objetos
 
-//    private Task identifyObject(String nome){
-//        for(i = 0; i < conjunct.size(); i++){
-//            if(conjunct.get(i).getName().equalsIgnoreCase(nome)) {
-//                Task selected =  conjunct.get(i);
-//                break;
-//            }
-//        }
-//        return selected;
-//    }
     private void addingTaskList(Task t){
         this.conjunct.add(t);
-    }
+    } //chamado no final do metodo de criaçao p adiçao no arraylist
 
-    //exibiçao geral da lista de tasks
     public void listExibition(){
         for(Task tasks: this.conjunct){
             System.out.println(tasks.toString());
         }
-    }
+    }  //exibiçao geral da lista de tasks
 
-    //criando os objeto e adicionando os na lista geral com a chamada do outro metodo
+    //criando os objetos e adicionando os na lista geral com a chamada do outro metodo
     public void createTask(String name, String dueDate, String category, int priorityLevel, String status, String subject, String activityType, int workType, double value, String transaction, String account, String place, int duration, String company){
         if(whichTaskType(category) == 1){
             Academical task = new Academical(name, dueDate, category, priorityLevel, status, subject, activityType);
@@ -59,30 +53,44 @@ public class Ambiente {
         }
 
     }
-    public void deleteTask(String tbDeleted){
-        for(i = 0; i < this.conjunct.size(); i++){
-            if(this.conjunct.get(i).getName().equalsIgnoreCase(tbDeleted)){ //esse ignores case e p letra maiuscula
-                this.conjunct.remove(i);
-                break;
-            }
+    public void deleteTask(Task tbDeleted){
+        this.conjunct.remove(tbDeleted);
+    }
+
+    public void editTask(Task tbEdited, String name, String dueDate, String category, int priorityLevel, String status, String subject, String activityType, int workType, double value, String transaction, String account, String place, int duration, String company){
+        tbEdited.setName(name);
+        tbEdited.setDueDate(dueDate);
+        tbEdited.setCategory(category);
+        tbEdited.setPriorityLevel(priorityLevel);
+        tbEdited.setStatus(status);
+
+        if(tbEdited instanceof Academical){
+            ((Academical) tbEdited).setSubject(subject);
+            ((Academical) tbEdited).setActivityType(activityType);
+        } else if (tbEdited instanceof Work) {
+            ((Work) tbEdited).setWorkType(workType);
+        } else if (tbEdited instanceof Finance) {
+            ((Finance) tbEdited).setValue(value);
+            ((Finance) tbEdited).setTransaction(transaction);
+            ((Finance) tbEdited).setAccount(account);
+        } else {
+            ((Leisure)tbEdited).setPlace(place);
+            ((Leisure)tbEdited).setDuration(duration);
+            ((Leisure)tbEdited).setCompany(company);
         }
     }
 
-    //o alterar esta em produçao
+    public void itsAdoneTask(Task isNowDone){
+        isNowDone.setStatus("Done");
+        doneTasks.add(isNowDone); //adicionando a uma lista de tasks so feitas
+        //talvez ver alguma coisa p mudar a cor na lista geral para verde
+    } //ainda vai ser adaptado para a parte da interface
 
-//    public void editTask(String tbEdited){
-//        for(i = 0; i < this.conjunct.size(); i++){
-//            if(this.conjunct.get(i).getName().equalsIgnoreCase(tbEdited)) {
-//                this.conjunct.get(i);
-//            }
-//        }
-//    }
+    public void doneTasksExibition(){
+        for(Task done: this.doneTasks){
+            System.out.println(done.toString());
+        }
+    }
 
-//  fazer o alterar: perguntar o nome da task, achar o objeto em questao, talvez conseguui o nome da sua classe
-//    preciso dar um jeito de criar um novo objeto p ser o novo selecionado e mandar para o metodo especifico da classe ambiente
-//    juntando isso ainda com os novos atributos do objeto que provavelmente vou emendar com o metodo de criaçao da task e colocar uma condicional
-
-    //      coisas p ver se faço aqui ou na pt de interface caso eu va adicionar uma:
-//            setar como feito -> provavelmente vou o usar o proprio metodo de set.status de um jeito mais simples
 //            colocar o running late --> tbm vou usar o setar syytatus mas vou ter criar um metodo dedicado usando o java.time
 }

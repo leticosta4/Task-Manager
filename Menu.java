@@ -1,10 +1,12 @@
+import items.Academical;
 import items.Ambiente;
+import items.Task;
 
 import java.util.Scanner;
 public class Menu {
     Scanner input = new Scanner(System.in);
     int ans;
-    String name, dueDate, category, subject, activityType, transaction, account, tbDeleted, edited;
+    String name, dueDate, category, subject, activityType, transaction, account, tbDeleted, chosen;
     int priorityLevel; //the lower the most urgent [1-3] - ver coisa com etiqueta de cor tambem
     int workType, duration;
     double value;
@@ -21,15 +23,16 @@ public class Menu {
                 3 - exibir lista geral de tasks
                 4 - excluir
                 5 - ticar como feita alguma task
-                //talvez: 5 - ver tasks atrasads
-                """));
+                6 - ver lista de tasks ja feitas (completas)
+                """)); //talvez: adicionar a possibilidade de ver tasks atrasads
         ans = input.nextInt();
         switch (ans){
             case 1 -> {
-                criarTask();
+                taskAttributes(1, null); //quando for 1 e p criar task, e 0 e p editar
                 break;
             }
             case 2 -> {
+                identifyTheTask(1);
                 break;
             }
             case 3 -> {
@@ -37,12 +40,23 @@ public class Menu {
                 break;
             }
             case 4 -> {
-                apagarQual();
+                identifyTheTask(2);
+                break;
+            }
+            case 5 -> {
+                identifyTheTask(0);
+                break;
+            }
+            case 6 -> {
+                env.doneTasksExibition();
                 break;
             }
         }
     }
-    private void criarTask(){
+    private void taskAttributes(int num, Task objt){ //serve tanto para criaçao quanto para ediçao
+        if(num == 0){ //quando e ediçao ele tambme manda o objeto a ser editado para que se use os setters
+            System.out.println("Type the new attributes for this task");
+        }
         System.out.println("Task name?");
         name = input.next();
         System.out.println("Due date? (DD/MM/YYYY)");
@@ -58,13 +72,21 @@ public class Menu {
                 subject = input.next();
                 System.out.println("Activity type?");
                 activityType = input.next();
-                env.createTask(name, dueDate, category, priorityLevel, "to be done", subject, activityType, 0, 0.0, null, null, null, 0, null);
+                if(num == 1){
+                    env.createTask(name, dueDate, category, priorityLevel, "to be done", subject, activityType, 0, 0.0, null, null, null, 0, null);
+                } else{
+                    env.editTask(objt, name, dueDate, category, priorityLevel, "to be done", subject, activityType, 0, 0.0, null, null, null, 0, null);
+                }
                 break;
             }
             case 2->{
                 System.out.print("Work type?\n1 - Job related\n2 - Home related\n");
                 workType = input.nextInt();
-                env.createTask(name, dueDate, category, priorityLevel, "to be done", null, null, workType, 0.0, null, null, null, 0, null);
+                if(num == 1){
+                    env.createTask(name, dueDate, category, priorityLevel, "to be done", null, null, workType, 0.0, null, null, null, 0, null);
+                } else{
+                    env.editTask(objt, name, dueDate, category, priorityLevel, "to be done", null, null, workType, 0.0, null, null, null, 0, null);
+                }
                 break;
             }
             case 3->{
@@ -74,7 +96,11 @@ public class Menu {
                 transaction = input.next();
                 System.out.println("Account?");
                 account = input.next();
-                env.createTask(name, dueDate, category, priorityLevel, "to be done", null, null, 0, value, transaction, account, null, 0, null);
+                if(num == 1){
+                    env.createTask(name, dueDate, category, priorityLevel, "to be done", null, null, 0, value, transaction, account, null, 0, null);
+                } else{
+                    env.editTask(objt, name, dueDate, category, priorityLevel, "to be done", null, null, 0, value, transaction, account, null, 0, null);
+                }
                 break;
             }
             case 4->{
@@ -84,24 +110,31 @@ public class Menu {
                 duration = input.nextInt();
                 System.out.println("Company? (if not applicable, just type '-')");
                 account = input.next();
-                env.createTask(name, dueDate, category, priorityLevel, "to be done", null, null, 0, 0.0, null, null, place, duration, company);
+                if(num == 1){
+                    env.createTask(name, dueDate, category, priorityLevel, "to be done", null, null, 0, 0.0, null, null, place, duration, company);
+                } else{
+                    env.editTask(objt, name, dueDate, category, priorityLevel, "to be done", null, null, 0, 0.0, null, null, place, duration, company);
+                }
                 break;
             }
         }
     } //depois vai ser adaptado com a interface
-    private void apagarQual(){
+
+    private void identifyTheTask(int n){ //0 p ticar como feita, 1 p ediçao geral e 2 p apagar
         System.out.println("digite o nome da task");
-        tbDeleted = input.next();
-        env.deleteTask(tbDeleted);
-    } //depois vai ser adaptado para interface com os action listeners e botoes
-
-    //esse de ediçao esta emproduçao
-
-//    private void editarQual(){
-//        System.out.println("digite o nome da task para editar ");
-//        edited = input.next();
-//       //mandar o nome p um metodo que acha o seu objeto equivalente e retorna esse objeto p um outro metodo que faz a ediçao
-//
-//    } //depois vai ser adaptado para interface com os action listeners e botoes de clique e ver ainda se vou mudar tudo ou n
+        chosen = input.next();
+        for(int j = 0; j < env.getConjunct().size(); j++){
+            if(env.getConjunct().get(j).getName().equalsIgnoreCase(chosen)){
+                if(n == 1){
+                    taskAttributes(0, env.getConjunct().get(j)); //mandando o objeto certo a ser editado
+                } else if(n == 2){
+                    env.deleteTask(env.getConjunct().get(j));
+                } else{
+                    env.itsAdoneTask(env.getConjunct().get(j));
+                }
+                break;
+            }
+        }
+    } //identifica o objeto especifico a ser editado a partir do input do seu nome, servindo para ediçao geral ou ticar como feita(depois vai ser adaptado para interface com os action listeners e botoes de clique e ver ainda se vou mudar tudo ou n)
 
 }
