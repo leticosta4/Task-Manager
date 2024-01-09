@@ -14,7 +14,7 @@ public class Menu {
 
     Ambiente env = new Ambiente();
 
-    //esse menu geral depois vai ser adaptado com a interface e a opçao de listar vai ser segunda a pg inicial
+
     public void exibirMenu(){
         System.out.println("o que gostaria de fazer?");
         System.out.println(String.format("""
@@ -52,7 +52,7 @@ public class Menu {
                 break;
             }
         }
-    }
+    } //esse menu geral depois vai ser adaptado com a interface e a opçao de listar vai ser segunda a pg inicial
     private void taskAttributes(int num, Task objt){ //serve tanto para criaçao quanto para ediçao
         if(num == 0){ //quando e ediçao ele tambme manda o objeto a ser editado para que se use os setters
             System.out.println("Type the new attributes for this task");
@@ -136,5 +136,5 @@ public class Menu {
             }
         }
     } //identifica o objeto especifico a ser editado a partir do input do seu nome, servindo para ediçao geral ou ticar como feita(depois vai ser adaptado para interface com os action listeners e botoes de clique e ver ainda se vou mudar tudo ou n)
-
+    //talvez esse metodo de identificaçao do obejto ficaria melhor na classse de ambiente, mas da um problema para o caso de ediçao da task
 }
