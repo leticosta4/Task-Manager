@@ -14,8 +14,9 @@ public class Menu {
 
     Ambiente env = new Ambiente();
 
-
+    //ATENÇAOO: O METODO DE RUNNIG LATE TEM QUE SER CHAMADO SEMPRE NO INICIO DO PROGRAMA
     public void exibirMenu(){
+        env.runningLate(); //verificando logo no inicio se alguma task ta atrasada
         System.out.println("o que gostaria de fazer?");
         System.out.println(String.format("""
                 1 - criar nova task
@@ -24,7 +25,9 @@ public class Menu {
                 4 - excluir
                 5 - ticar como feita alguma task
                 6 - ver lista de tasks ja feitas (completas)
-                """)); //talvez: adicionar a possibilidade de ver tasks atrasads
+                7 - ver lista de tasks atrasadas 
+                
+                """));
         ans = input.nextInt();
         switch (ans){
             case 1 -> {
@@ -51,6 +54,10 @@ public class Menu {
                 env.doneTasksExibition();
                 break;
             }
+            case 7 -> {
+                env.pastDueTasksExibition();
+                break;
+            }
         }
     } //esse menu geral depois vai ser adaptado com a interface e a opçao de listar vai ser segunda a pg inicial
     private void taskAttributes(int num, Task objt){ //serve tanto para criaçao quanto para ediçao
@@ -65,9 +72,11 @@ public class Menu {
         category = input.next();
         System.out.println("Priority level [1-3]? (the lower the most urgent)");
         priorityLevel = input.nextInt();
-
+        //o switch case n ta funcionando por categoria
+        System.out.println("resultado da identificaçao da categoria com numero " + env.whichTaskType(category)); //TESTE
         switch (env.whichTaskType(category)){
             case 1->{
+                System.out.println("entrou como academico"); //TESTE
                 System.out.println("Subject?");
                 subject = input.next();
                 System.out.println("Activity type?");

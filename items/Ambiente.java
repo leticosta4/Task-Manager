@@ -1,25 +1,29 @@
 package items;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.time.LocalDate; //sera usado p ver se a task esta atrasada
 
 public class Ambiente {
     public ArrayList <Task> conjunct = new ArrayList<Task>();
     private ArrayList <Task> doneTasks = new ArrayList<Task>(); //talvez depois preceiise de um getter
-    //talvez depois adicionar um arraylist de tasks atrasadas
 
+    private ArrayList <Task> pastDueTasks = new ArrayList<Task>(); //talvez ainda precisse de um getter
     public ArrayList<Task> getConjunct() { //e so o getter basico mesmo
         return conjunct;
     }
 
-    //public ArrayList<Task> getDoneTasks(){ return doneTasks; }
+//    public ArrayList<Task> getDoneTasks(){ return doneTasks; }
+//    public ArrayList<Task> getPastDueTasks(){ return pastDueTasks; }
 
-    public int whichTaskType(String category){
+    public int whichTaskType(String category){ //talvez esse switch n esteja funcionando bem
         //identificando qual o tipo de task para instaciar a subclasse certa
-        if(category == "Academical"){
+        if(category.equalsIgnoreCase("Academical")){
+            System.out.println("entrou"); //TESTE
             return 1;
-        } else if(category == "Work"){
+        } else if(category.equalsIgnoreCase("Work")){
             return 2;
-        }else if(category == "Finance"){
+        }else if(category.equalsIgnoreCase("Finance")){
             return 3;
         } else{
             return 4;
@@ -80,6 +84,7 @@ public class Ambiente {
         }
     }
 
+    //esses metodos de tempo talvez devessem ficar na classe abstrata Task, mas tem a questao dos arrayslist
     public void itsAdoneTask(Task isNowDone){
         isNowDone.setStatus("Done");
         doneTasks.add(isNowDone); //adicionando a uma lista de tasks so feitas
@@ -89,6 +94,26 @@ public class Ambiente {
     public void doneTasksExibition(){
         for(Task done: this.doneTasks){
             System.out.println(done.toString());
+        }
+    }
+
+    public void runningLate(){
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate currentDate = LocalDate.now();
+        System.out.println("data atual segundo o java time: " + currentDate); //teste
+        LocalDate deadline;
+        for(int ind = 0; ind < this.conjunct.size(); ind++){
+            deadline = LocalDate.parse(this.conjunct.get(ind).getDueDate(), format);
+            if(deadline.isBefore(currentDate)){ //se for true
+                this.conjunct.get(ind).setStatus("Past due");
+                pastDueTasks.add(this.conjunct.get(ind));
+                //talvez ver alguma coisa p mudar a cor na lista geral para vermelho
+            }
+        }
+    }
+    public void pastDueTasksExibition(){
+        for(Task pastDue: this.pastDueTasks){
+            System.out.println(pastDue.toString());
         }
     }
 
