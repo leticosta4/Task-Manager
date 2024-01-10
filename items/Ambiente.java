@@ -1,5 +1,6 @@
 package items;
 
+import java.sql.SQLOutput;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.time.LocalDate; //sera usado p ver se a task esta atrasada
@@ -29,15 +30,17 @@ public class Ambiente {
         }
     } //usado na criaçao e ediçao de objetos
 
-    //teste mudando p public por um momento
-    public void addingTaskList(Task t){
+    private void addingTaskList(Task t){
         this.conjunct.add(t);
     } //chamado no final do metodo de criaçao p adiçao no arraylist
 
     public void listExibition(){
-        System.out.println("entrou na exibiçao da lista"); //TESTE
-        for(Task tasks: this.conjunct){
-            System.out.println(tasks.toString());
+        if(this.conjunct != null){
+            for(Task tasks: this.conjunct){
+              System.out.println(tasks.toString());
+            }
+        } else{
+            System.out.println("A lista de tasks esta vazia");
         }
     }  //exibiçao geral da lista de tasks
 
@@ -93,15 +96,19 @@ public class Ambiente {
     } //ainda vai ser adaptado para a parte da interface
 
     public void doneTasksExibition(){
-        for(Task done: this.doneTasks){
-            System.out.println(done.toString());
+        if(this.doneTasks != null){
+            for(Task done: this.doneTasks){
+                System.out.println(done.toString());
+            }
+        } else{
+            System.out.println("The done tasks list is still empty");
         }
+
     }
 
     public void runningLate(){
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate currentDate = LocalDate.now();
-        System.out.println("data atual segundo o java time: " + currentDate); //teste
         LocalDate deadline;
         for(int ind = 0; ind < this.conjunct.size(); ind++){
             deadline = LocalDate.parse(this.conjunct.get(ind).getDueDate(), format);
@@ -113,10 +120,12 @@ public class Ambiente {
         }
     }
     public void pastDueTasksExibition(){
-        for(Task pastDue: this.pastDueTasks){
-            System.out.println(pastDue.toString());
+        if(this.pastDueTasks != null){
+            for(Task pastDue: this.pastDueTasks){
+                System.out.println(pastDue.toString());
+            }
+        } else {
+            System.out.println("The running late tasks list is still empty");
         }
     }
-
-//            colocar o running late --> tbm vou usar o setar syytatus mas vou ter criar um metodo dedicado usando o java.time
 }

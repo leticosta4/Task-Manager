@@ -17,9 +17,10 @@ public class Menu {
 
     //ATENÇAOO: O METODO DE RUNNIG LATE TEM QUE SER CHAMADO SEMPRE NO INICIO DO PROGRAMA
     public void exibirMenu(){
-        env.runningLate(); //verificando logo no inicio se alguma task ta atrasada
-        System.out.println("o que gostaria de fazer?");
-        System.out.println(String.format("""
+        System.out.println("task manager");
+        do{
+            System.out.println("o que gostaria de fazer?");
+            System.out.println(String.format("""
                 1 - criar nova task
                 2 - editar
                 3 - exibir lista geral de tasks
@@ -30,8 +31,6 @@ public class Menu {
                 8 - sair
                 
                 """));
-
-        do{
             ans = input.nextInt();
             switch (ans){
                 case 1 -> {
@@ -43,7 +42,6 @@ public class Menu {
                     break;
                 }
                 case 3 -> {
-                    System.out.println("entrou no primeiro switch com num" + ans); //TESTE
                     env.listExibition();
                     break;
                 }
@@ -60,14 +58,13 @@ public class Menu {
                     break;
                 }
                 case 7 -> {
+                    env.runningLate(); //verificando logo no inicio se alguma task ta atrasada
                     env.pastDueTasksExibition();
                     break;
                 }
-                case 8 ->{
-                    break;
-                }
+                //so ta faltando a parte de sair do menu quando aperta 8
             }
-        }while(ans > 1 || ans < 8);
+        }while(ans > 1 || ans < 7);
 
     } //esse menu geral depois vai ser adaptado com a interface e a opçao de listar vai ser segunda a pg inicial
     private void taskAttributes(int num, Task objt){ //serve tanto para criaçao quanto para ediçao
