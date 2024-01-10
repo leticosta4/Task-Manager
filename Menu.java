@@ -2,10 +2,11 @@ import items.Academical;
 import items.Ambiente;
 import items.Task;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 public class Menu {
     Scanner input = new Scanner(System.in);
-    int ans;
+    int ans = 1;
     String name, dueDate, category, subject, activityType, transaction, account, tbDeleted, chosen;
     int priorityLevel; //the lower the most urgent [1-3] - ver coisa com etiqueta de cor tambem
     int workType, duration;
@@ -26,57 +27,64 @@ public class Menu {
                 5 - ticar como feita alguma task
                 6 - ver lista de tasks ja feitas (completas)
                 7 - ver lista de tasks atrasadas 
+                8 - sair
                 
                 """));
-        ans = input.nextInt();
-        switch (ans){
-            case 1 -> {
-                taskAttributes(1, null); //quando for 1 e p criar task, e 0 e p editar
-                break;
+
+        do{
+            ans = input.nextInt();
+            switch (ans){
+                case 1 -> {
+                    taskAttributes(1, null); //quando for 1 e p criar task, e 0 e p editar
+                    break;
+                }
+                case 2 -> {
+                    identifyTheTask(1);
+                    break;
+                }
+                case 3 -> {
+                    System.out.println("entrou no primeiro switch com num" + ans); //TESTE
+                    env.listExibition();
+                    break;
+                }
+                case 4 -> {
+                    identifyTheTask(2);
+                    break;
+                }
+                case 5 -> {
+                    identifyTheTask(0);
+                    break;
+                }
+                case 6 -> {
+                    env.doneTasksExibition();
+                    break;
+                }
+                case 7 -> {
+                    env.pastDueTasksExibition();
+                    break;
+                }
+                case 8 ->{
+                    break;
+                }
             }
-            case 2 -> {
-                identifyTheTask(1);
-                break;
-            }
-            case 3 -> {
-                env.listExibition();
-                break;
-            }
-            case 4 -> {
-                identifyTheTask(2);
-                break;
-            }
-            case 5 -> {
-                identifyTheTask(0);
-                break;
-            }
-            case 6 -> {
-                env.doneTasksExibition();
-                break;
-            }
-            case 7 -> {
-                env.pastDueTasksExibition();
-                break;
-            }
-        }
+        }while(ans > 1 || ans < 8);
+
     } //esse menu geral depois vai ser adaptado com a interface e a opçao de listar vai ser segunda a pg inicial
     private void taskAttributes(int num, Task objt){ //serve tanto para criaçao quanto para ediçao
-        if(num == 0){ //quando e ediçao ele tambme manda o objeto a ser editado para que se use os setters
+        if(num == 0){ //quando e ediçao ele tbm manda o objeto a ser editado para que se use os setters
             System.out.println("Type the new attributes for this task");
         }
         System.out.println("Task name?");
         name = input.next();
-        System.out.println("Due date? (DD/MM/YYYY)");
+        System.out.println("Due date? (yyyy/MM/dd)");
         dueDate = input.next();
         System.out.print("Category?");
         category = input.next();
         System.out.println("Priority level [1-3]? (the lower the most urgent)");
         priorityLevel = input.nextInt();
-        //o switch case n ta funcionando por categoria
-        System.out.println("resultado da identificaçao da categoria com numero " + env.whichTaskType(category)); //TESTE
+
         switch (env.whichTaskType(category)){
             case 1->{
-                System.out.println("entrou como academico"); //TESTE
                 System.out.println("Subject?");
                 subject = input.next();
                 System.out.println("Activity type?");

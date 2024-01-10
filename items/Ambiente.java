@@ -16,10 +16,9 @@ public class Ambiente {
 //    public ArrayList<Task> getDoneTasks(){ return doneTasks; }
 //    public ArrayList<Task> getPastDueTasks(){ return pastDueTasks; }
 
-    public int whichTaskType(String category){ //talvez esse switch n esteja funcionando bem
+    public int whichTaskType(String category){
         //identificando qual o tipo de task para instaciar a subclasse certa
         if(category.equalsIgnoreCase("Academical")){
-            System.out.println("entrou"); //TESTE
             return 1;
         } else if(category.equalsIgnoreCase("Work")){
             return 2;
@@ -30,11 +29,13 @@ public class Ambiente {
         }
     } //usado na criaçao e ediçao de objetos
 
-    private void addingTaskList(Task t){
+    //teste mudando p public por um momento
+    public void addingTaskList(Task t){
         this.conjunct.add(t);
     } //chamado no final do metodo de criaçao p adiçao no arraylist
 
     public void listExibition(){
+        System.out.println("entrou na exibiçao da lista"); //TESTE
         for(Task tasks: this.conjunct){
             System.out.println(tasks.toString());
         }
@@ -98,7 +99,7 @@ public class Ambiente {
     }
 
     public void runningLate(){
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate currentDate = LocalDate.now();
         System.out.println("data atual segundo o java time: " + currentDate); //teste
         LocalDate deadline;
