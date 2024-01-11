@@ -31,6 +31,7 @@ public class Ambiente {
     } //chamado no final do metodo de criaçao p adiçao no arraylist
 
     public void listExibition(){
+        runningLate(); //verificando sempre que a lista e requisitada
         if(this.conjunct != null){
             for(Task tasks: this.conjunct){
               System.out.println(tasks.toString());
@@ -91,7 +92,8 @@ public class Ambiente {
     } //ainda vai ser adaptado para a parte da interface
 
     public void doneTasksExibition(){
-        if(this.doneTasks != null){
+        if(!this.doneTasks.isEmpty()){
+            //entrou no if de nao empty
             for(Task done: this.doneTasks){
                 System.out.println(done.toString());
             }
@@ -101,7 +103,7 @@ public class Ambiente {
 
     }
 
-    public void runningLate(){
+    private void runningLate(){
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate currentDate = LocalDate.now();
         LocalDate deadline;
@@ -115,7 +117,7 @@ public class Ambiente {
         }
     }
     public void pastDueTasksExibition(){
-        if(this.pastDueTasks != null){
+        if(!this.pastDueTasks.isEmpty()){
             for(Task pastDue: this.pastDueTasks){
                 System.out.println(pastDue.toString());
             }
