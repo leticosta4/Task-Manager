@@ -1,21 +1,17 @@
 package items;
 
-import java.sql.SQLOutput;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.time.LocalDate; //sera usado p ver se a task esta atrasada
 
 public class Ambiente {
     public ArrayList <Task> conjunct = new ArrayList<Task>();
-    private ArrayList <Task> doneTasks = new ArrayList<Task>(); //talvez depois preceiise de um getter
-
-    private ArrayList <Task> pastDueTasks = new ArrayList<Task>(); //talvez ainda precisse de um getter
+    private ArrayList <Task> doneTasks = new ArrayList<Task>();
+    private ArrayList <Task> pastDueTasks = new ArrayList<Task>();
+    //talvez esses arrayslist de task feita e atrasada precisem de getters ainda
     public ArrayList<Task> getConjunct() { //e so o getter basico mesmo
         return conjunct;
     }
-
-//    public ArrayList<Task> getDoneTasks(){ return doneTasks; }
-//    public ArrayList<Task> getPastDueTasks(){ return pastDueTasks; }
 
     public int whichTaskType(String category){
         //identificando qual o tipo de task para instaciar a subclasse certa
@@ -88,7 +84,6 @@ public class Ambiente {
         }
     }
 
-    //esses metodos de tempo talvez devessem ficar na classe abstrata Task, mas tem a questao dos arrayslist
     public void itsAdoneTask(Task isNowDone){
         isNowDone.setStatus("Done");
         doneTasks.add(isNowDone); //adicionando a uma lista de tasks so feitas

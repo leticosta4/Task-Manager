@@ -1,13 +1,11 @@
-import items.Academical;
 import items.Ambiente;
 import items.Task;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 public class Menu {
     Scanner input = new Scanner(System.in);
     int ans = 1;
-    String name, dueDate, category, subject, activityType, transaction, account, tbDeleted, chosen;
+    String name, dueDate, category, subject, activityType, transaction, account, chosen, status;
     int priorityLevel; //the lower the most urgent [1-3] - ver coisa com etiqueta de cor tambem
     int workType, duration;
     double value;
@@ -58,7 +56,6 @@ public class Menu {
                     break;
                 }
                 case 7 -> {
-                    env.runningLate(); //verificando logo no inicio se alguma task ta atrasada
                     env.pastDueTasksExibition();
                     break;
                 }
@@ -68,6 +65,7 @@ public class Menu {
 
     } //esse menu geral depois vai ser adaptado com a interface e a opçao de listar vai ser segunda a pg inicial
     private void taskAttributes(int num, Task objt){ //serve tanto para criaçao quanto para ediçao
+        env.runningLate(); //verificando sempre que uma task e criada ou editada se as outras estao ok ou n
         if(num == 0){ //quando e ediçao ele tbm manda o objeto a ser editado para que se use os setters
             System.out.println("Type the new attributes for this task");
         }
@@ -79,7 +77,10 @@ public class Menu {
         category = input.next();
         System.out.println("Priority level [1-3]? (the lower the most urgent)");
         priorityLevel = input.nextInt();
-
+        if(num == 0){ //so se for na ediçao pq o de criaçao e sempre como "to be done"
+            System.out.println("Status?");
+            status = input.next();
+        }
         switch (env.whichTaskType(category)){
             case 1->{
                 System.out.println("Subject?");
@@ -89,7 +90,7 @@ public class Menu {
                 if(num == 1){
                     env.createTask(name, dueDate, category, priorityLevel, "to be done", subject, activityType, 0, 0.0, null, null, null, 0, null);
                 } else{
-                    env.editTask(objt, name, dueDate, category, priorityLevel, "to be done", subject, activityType, 0, 0.0, null, null, null, 0, null);
+                    env.editTask(objt, name, dueDate, category, priorityLevel, status, subject, activityType, 0, 0.0, null, null, null, 0, null);
                 }
                 break;
             }
@@ -99,7 +100,7 @@ public class Menu {
                 if(num == 1){
                     env.createTask(name, dueDate, category, priorityLevel, "to be done", null, null, workType, 0.0, null, null, null, 0, null);
                 } else{
-                    env.editTask(objt, name, dueDate, category, priorityLevel, "to be done", null, null, workType, 0.0, null, null, null, 0, null);
+                    env.editTask(objt, name, dueDate, category, priorityLevel, status, null, null, workType, 0.0, null, null, null, 0, null);
                 }
                 break;
             }
@@ -113,7 +114,7 @@ public class Menu {
                 if(num == 1){
                     env.createTask(name, dueDate, category, priorityLevel, "to be done", null, null, 0, value, transaction, account, null, 0, null);
                 } else{
-                    env.editTask(objt, name, dueDate, category, priorityLevel, "to be done", null, null, 0, value, transaction, account, null, 0, null);
+                    env.editTask(objt, name, dueDate, category, priorityLevel, status, null, null, 0, value, transaction, account, null, 0, null);
                 }
                 break;
             }
@@ -127,7 +128,7 @@ public class Menu {
                 if(num == 1){
                     env.createTask(name, dueDate, category, priorityLevel, "to be done", null, null, 0, 0.0, null, null, place, duration, company);
                 } else{
-                    env.editTask(objt, name, dueDate, category, priorityLevel, "to be done", null, null, 0, 0.0, null, null, place, duration, company);
+                    env.editTask(objt, name, dueDate, category, priorityLevel, status, null, null, 0, 0.0, null, null, place, duration, company);
                 }
                 break;
             }
