@@ -62,12 +62,11 @@ public class Ambiente {
         this.conjunct.remove(tbDeleted);
     }
 
-    public void editTask(Task tbEdited, String name, String dueDate, String category, int priorityLevel, String status, String subject, String activityType, int workType, double value, String transaction, String account, String place, int duration, String company){
+    public void editTask(Task tbEdited, String name, String dueDate, int priorityLevel, String subject, String activityType, int workType, double value, String transaction, String account, String place, int duration, String company){
         tbEdited.setName(name);
         tbEdited.setDueDate(dueDate);
-        tbEdited.setCategory(category);
         tbEdited.setPriorityLevel(priorityLevel);
-        tbEdited.setStatus(status);
+        //tbEdited.setStatus("To be done");
 
         if(tbEdited instanceof Academical){
             ((Academical) tbEdited).setSubject(subject);
@@ -93,7 +92,6 @@ public class Ambiente {
 
     public void doneTasksExibition(){
         if(!this.doneTasks.isEmpty()){
-            //entrou no if de nao empty
             for(Task done: this.doneTasks){
                 System.out.println(done.toString());
             }

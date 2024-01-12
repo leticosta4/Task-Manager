@@ -11,6 +11,5 @@ public class Main {
 
         start.exibirMenu(); //menu inicial por enquanto que depois vai ser adaptado com a interface
 
-        //tentar depois tirar o replaceAll
     }
 }

@@ -20,7 +20,7 @@ public class Menu {
             System.out.println("o que gostaria de fazer?");
             System.out.println(String.format("""
                 1 - criar nova task
-                2 - editar
+                2 - editar (na mesma categoria)
                 3 - exibir lista geral de tasks
                 4 - excluir
                 5 - ticar como feita alguma task
@@ -68,21 +68,20 @@ public class Menu {
             System.out.println("Type the new attributes for this task");
         }
         System.out.println("Task name?");
-        //name = input.nextLine(); //tentar depois colocando nextLine() e tirando esse if de baixo
-        System.out.println("Due date? (yyyy/MM/dd)");
+        name = input.nextLine(); //tem que dar um enter extra
+        name = input.nextLine(); //CUIDADO COM ISSO
 
-        if(name.contains(" ")){
-            input.next(); //so precisa disso se a string de nome tiver espaços, p n pular a linha seguinte
-        }
+        System.out.println("Due date? (yyyy/MM/dd)");
         dueDate = input.next();
-        System.out.println("Category?");
-        category = input.next();
+
+        if(num == 1){
+            System.out.println("Category?");
+            category = input.next();
+        }
+
         System.out.println("Priority level [1-3]? (the lower the most urgent)");
         priorityLevel = input.nextInt();
-        if(num == 0){ //so se for na ediçao pq o de criaçao e sempre como "to be done"
-            System.out.println("Status?");
-            status = input.next();
-        }
+
         switch (env.whichTaskType(category)){
             case 1->{
                 System.out.println("Subject?");
@@ -90,9 +89,10 @@ public class Menu {
                 System.out.println("Activity type?");
                 activityType = input.next();
                 if(num == 1){
-                    env.createTask(name.replaceAll("\\s+", ""), dueDate, category, priorityLevel, "to be done", subject, activityType, 0, 0.0, null, null, null, 0, null);
+                    env.createTask(name, dueDate, category, priorityLevel, "to be done", subject, activityType, 0, 0.0, null, null, null, 0, null);
+                    //testando sem o replace all
                 } else{
-                    env.editTask(objt, name.replaceAll("\\s+", ""), dueDate, category, priorityLevel, status, subject, activityType, 0, 0.0, null, null, null, 0, null);
+                    env.editTask(objt, name, dueDate, priorityLevel, subject, activityType, 0, 0.0, null, null, null, 0, null);
                 }
                 break;
             }
@@ -100,9 +100,9 @@ public class Menu {
                 System.out.print("Work type?\n1 - Job related\n2 - Home related\n");
                 workType = input.nextInt();
                 if(num == 1){
-                    env.createTask(name.replaceAll("\\s+", ""), dueDate, category, priorityLevel, "to be done", null, null, workType, 0.0, null, null, null, 0, null);
+                    env.createTask(name, dueDate, category, priorityLevel, "to be done", null, null, workType, 0.0, null, null, null, 0, null);
                 } else{
-                    env.editTask(objt, name.replaceAll("\\s+", ""), dueDate, category, priorityLevel, status, null, null, workType, 0.0, null, null, null, 0, null);
+                    env.editTask(objt, name, dueDate, priorityLevel, null, null, workType, 0.0, null, null, null, 0, null);
                 }
                 break;
             }
@@ -114,9 +114,9 @@ public class Menu {
                 System.out.println("Account?");
                 account = input.next();
                 if(num == 1){
-                    env.createTask(name.replaceAll("\\s+", ""), dueDate, category, priorityLevel, "to be done", null, null, 0, value, transaction, account, null, 0, null);
+                    env.createTask(name, dueDate, category, priorityLevel, "to be done", null, null, 0, value, transaction, account, null, 0, null);
                 } else{
-                    env.editTask(objt, name.replaceAll("\\s+", ""), dueDate, category, priorityLevel, status, null, null, 0, value, transaction, account, null, 0, null);
+                    env.editTask(objt, name, dueDate, priorityLevel, null, null, 0, value, transaction, account, null, 0, null);
                 }
                 break;
             }
@@ -126,11 +126,11 @@ public class Menu {
                 System.out.println("Duration? (in hours)");
                 duration = input.nextInt();
                 System.out.println("Company? (if not applicable, just type '-')");
-                account = input.next();
+                company = input.next();
                 if(num == 1){
-                    env.createTask(name.replaceAll("\\s+", ""), dueDate, category, priorityLevel, "to be done", null, null, 0, 0.0, null, null, place, duration, company);
+                    env.createTask(name, dueDate, category, priorityLevel, "to be done", null, null, 0, 0.0, null, null, place, duration, company);
                 } else{
-                    env.editTask(objt, name.replaceAll("\\s+", ""), dueDate, category, priorityLevel, status, null, null, 0, 0.0, null, null, place, duration, company);
+                    env.editTask(objt, name, dueDate, priorityLevel, null, null, 0, 0.0, null, null, place, duration, company);
                 }
                 break;
             }
@@ -140,12 +140,8 @@ public class Menu {
     private void identifyTheTask(int n){ //0 p ticar como feita, 1 p ediçao geral e 2 p apagar
         System.out.println("digite o nome da task");
         chosen = qual.nextLine();
-
         for(int j = 0; j < env.getConjunct().size(); j++){
-
-            if(env.getConjunct().get(j).getName().equalsIgnoreCase(chosen.replaceAll("\\s+", ""))){
-               System.out.println("passou");
-
+            if(env.getConjunct().get(j).getName().equalsIgnoreCase(chosen)){ //o chosen sem o replaceAll
                 if(n == 1){
                     taskAttributes(0, env.getConjunct().get(j)); //mandando o objeto certo a ser editado
                     break;
@@ -156,8 +152,6 @@ public class Menu {
                     env.itsAdoneTask(env.getConjunct().get(j));
                     break;
                 }
-            } else{
-               System.out.println("fudeu");
             }
         }
     } //identifica o objeto especifico a ser editado a partir do input do seu nome, servindo para ediçao geral ou ticar como feita(depois vai ser adaptado para interface com os action listeners e botoes de clique e ver ainda se vou mudar tudo ou n)
