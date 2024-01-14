@@ -1,10 +1,12 @@
 package items;
 
+import items.*;
+
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.time.LocalDate; //sera usado p ver se a task esta atrasada
 
-public class Ambiente {
+public class Environment {
     public ArrayList <Task> conjunct = new ArrayList<Task>();
     private ArrayList <Task> doneTasks = new ArrayList<Task>();
     private ArrayList <Task> pastDueTasks = new ArrayList<Task>();

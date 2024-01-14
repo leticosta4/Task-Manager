@@ -1,7 +1,8 @@
-import items.Ambiente;
+import items.Environment;
 import items.Task;
 
 import java.util.Scanner;
+
 public class Menu {
     Scanner input = new Scanner(System.in);
     Scanner outro = new Scanner(System.in);
@@ -13,7 +14,7 @@ public class Menu {
     double value;
     String place, company; //se aplicaveis
 
-    Ambiente env = new Ambiente();
+    Environment env = new Environment();
     public void exibirMenu(){
         System.out.println("task manager");
         do{
