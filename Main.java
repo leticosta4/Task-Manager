@@ -31,7 +31,7 @@ public class Main {
 //                POSSIVEL IDEIA: talvez a pergunat to tipo de task deveria ser primeiro, o que poderia ser implmenetado com um JComboBox
 //                - vai ser um pouco dificil de fazer o menu de ediçaoe criaçao por causa dessas perguntas
 
-
+//      tambem esta decidido que vou colocar os checkboxes que vao ser o que vao substituir o botao de toicar como feita a task na screen 2
 
     }
 
