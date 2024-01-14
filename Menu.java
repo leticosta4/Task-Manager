@@ -137,6 +137,9 @@ public class Menu {
         }
     } //depois vai ser adaptado com a interface
 
+    //na parte de apadptar p interface esse metodo aqui de baixo provavelmente vai ter que passar p parte de ambiente
+    //e talvez mais uma classe da pt do "backend" tenha que ser criada
+
     private void identifyTheTask(int n){ //0 p ticar como feita, 1 p ediçao geral e 2 p apagar
         System.out.println("digite o nome da task");
         chosen = qual.nextLine();
