@@ -1,10 +1,12 @@
-import items.*;
+import Interface.firstMenu;
+//import items.*;
 
-import javax.swing.*;
+//import javax.swing.*;
 
 public class Main {
     public static void main(String[] args){
-        Menu start = new Menu();
+        firstMenu start = new firstMenu();
+
         //   start.exibirMenu(); //menu inicial por enquanto que depois vai ser adaptado com a interface
 
 

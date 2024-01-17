@@ -2,7 +2,7 @@ package Interface;
 
 import items.*;
 import javax.swing.*;
-import java.awt.*;
+import java.awt.*; //talvwz tirar depois
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,12 +10,10 @@ public class firstMenu extends JFrame implements ActionListener{
     private JLabel title;
     private JLabel message;
     private JButton exitButton;
-    //linkar essas listas abaixo comm seus respectivos arrayslists
-
     private Environment there = new Environment();
     private JPanel firstScreen;
     private JButton pastDueTasksButton;
-    private JButton generalListExibiton;
+    private JButton generalListExibitonButton; //pq ta com essa notificaçao oxe
     private JButton doneTasksButton;
     private JButton addTaskButton;
 
@@ -28,7 +26,7 @@ public class firstMenu extends JFrame implements ActionListener{
         this.there.createTask("ddd", "2024/01/31", "Leisure", 3, "To be done", null, null, 0, 0.0, null, null, "-", 72, "-");
 
         initializingTheComponents();
-        //chamar a inicialiçao dos componenetes graficos visuais e dentro desse colocar a chamada dos botoes - inicio da logica do programa
+        //chamar a inicializaçao dos componenetes graficos visuais e dentro desse colocar a chamada dos botoes - inicio da logica do programa
 
     }
 
@@ -36,26 +34,22 @@ public class firstMenu extends JFrame implements ActionListener{
         this.setDefaultCloseOperation(EXIT_ON_CLOSE); //o padrao p fechar a janela
         this.setVisible(true);
         this.setContentPane(firstScreen);
+        this.firstScreen.setSize(560,640);
         this.setLocationRelativeTo(null);
 
-        //configurando os JLabels:
-        this.title.setFont((new Font("Deja Vu Serif", Font.BOLD, 26)));
-        this.title.setBackground(Color.BLUE);
-        this.message.setFont((new Font("Bitstream Charter", Font.ITALIC, 14)));
+        //configurando os JLabels: - provavel que da p tirar pq eu ja mexi pelo .form
+//        this.title.setFont((new Font("Deja Vu Serif", Font.BOLD, 26)));
+//        this.message.setFont((new Font("Bitstream Charter", Font.ITALIC, 14)));
 
-//        //adicionando algumas coisas no painel: - talvezz isso seja denecessario
-//        this.firstScreen.add(title);
-//        this.firstScreen.add(message);
-//        this.firstScreen.add(generalListExibiton);
-//        this.firstScreen.add(doneTasksButton);
-//        this.firstScreen.add(pastDueTasksButton);
-//        this.firstScreen.add(exitButton);
-
-        //finalizando:
         buttons();
+
+        this.firstScreen.add(generalListExibitonButton);
+        this.firstScreen.add(doneTasksButton);
+        this.firstScreen.add(pastDueTasksButton);
+        this.firstScreen.add(exitButton);
     }
-    public void buttons(){
-        generalListExibiton.addActionListener(this);
+    public void buttons(){  //adicionando actionListeners p os botoes
+        generalListExibitonButton.addActionListener(this);
         doneTasksButton.addActionListener(this);
         pastDueTasksButton.addActionListener(this);
         addTaskButton.addActionListener(this);
@@ -66,13 +60,20 @@ public class firstMenu extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //setando o que vai ocorrer quando botoes especificos forem apertados
+        //esses menus especificos vao ter que ter seus construtores com o this.environment e com seus metodos especificos de adicionar os componentes ao painel
+        // o listingTasksMenu provavelmente vai ser usado p os 3 tipos de listas, e ai so vou usar um identificador p saber qual ativar na hora
 
-//        lista geral
-//        lista de feitos
-//        lista de atrasados
-//        criar nova
-//        sair
 
-    }
+        if(e.getSource() == generalListExibitonButton){
+            //chamar o menu de listar geral com uma instancia, e colocar as cores especificas p o status
+        } else if (e.getSource() == doneTasksButton) {
+            //chamar o menu de listar as tasks feitas
+        } else if (e.getSource() == pastDueTasksButton) {
+            //chamar o menu de listar as tasks atrasadas
+        } else if (e.getSource() == addTaskButton) {
+            //chamar o menu de criar tasks
+        } else if (e.getSource() == exitButton){
+            dispose();
+        }
+    } //setando o que vai ocorrer quando botoes especificos forem apertados
 }
