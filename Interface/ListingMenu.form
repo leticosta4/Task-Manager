@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Interface.ListingMenu">
+  <grid id="27dc6" binding="listingScreen" layout-manager="GridLayoutManager" row-count="6" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="785" height="577"/>
+    </constraints>
+    <properties/>
+    <clientProperties>
+      <html.disable class="java.lang.Boolean" value="false"/>
+    </clientProperties>
+    <border type="none" title="Your Tasks!"/>
+    <children>
+      <vspacer id="2157a">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <component id="9e0fb" class="javax.swing.JLabel" binding="searchMessage">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Courier 10 Pitch" size="14" style="1"/>
+          <foreground color="-10875283"/>
+          <text value="Search:"/>
+        </properties>
+      </component>
+      <scrollpane id="66c1d" binding="listingPanel">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="300" height="350"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none" title="Tasks"/>
+        <children>
+          <component id="98f03" class="javax.swing.JList" binding="generalList">
+            <constraints/>
+            <properties/>
+          </component>
+        </children>
+      </scrollpane>
+      <component id="56fc6" class="javax.swing.JTextField" binding="searching">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <toolTipText value="&lt;html&gt; Search the name of your task &lt;/html&gt;&#10;"/>
+        </properties>
+      </component>
+      <vspacer id="e7770">
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <scrollpane id="81887" binding="infoPanel">
+        <constraints>
+          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="300" height="350"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none" title="Information"/>
+        <children>
+          <component id="a6961" class="javax.swing.JLabel" binding="info">
+            <constraints/>
+            <properties>
+              <text value="info about your tasks"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <component id="ff426" class="javax.swing.JComboBox" binding="taskTypes">
+        <constraints>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="Courier New" size="13" style="1"/>
+          <foreground color="-10875283"/>
+          <model>
+            <item value="All"/>
+            <item value="Academical"/>
+            <item value="Work"/>
+            <item value="Finance"/>
+            <item value="Leisure"/>
+          </model>
+          <toolTipText value="&lt;html&gt; Select the task type &lt;/html&gt;&#10;"/>
+        </properties>
+      </component>
+      <component id="2b5c" class="javax.swing.JButton" binding="deleteButton" default-binding="true">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Courier 10 Pitch" size="14" style="1"/>
+          <text value="Delete"/>
+        </properties>
+      </component>
+      <component id="a7b2b" class="javax.swing.JButton" binding="goBackButton" default-binding="true">
+        <constraints>
+          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Courier 10 Pitch" size="14" style="1"/>
+          <text value="Go Back"/>
+          <toolTipText value="&lt;html&gt; Go back to the first menu &lt;/html&gt;"/>
+        </properties>
+      </component>
+      <component id="a4d10" class="javax.swing.JButton" binding="editButton" default-binding="true">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Courier 10 Pitch" size="14" style="1"/>
+          <text value="Edit"/>
+        </properties>
+      </component>
+      <component id="9888d" class="javax.swing.JButton" binding="doneButton">
+        <constraints>
+          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Courier 10 Pitch" size="14" style="1"/>
+          <foreground color="-15621113"/>
+          <text value="Done"/>
+          <toolTipText value="&lt;html&gt; Set your task as done &lt;/html&gt;&#10;"/>
+        </properties>
+      </component>
+      <hspacer id="ee3b1">
+        <constraints>
+          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <hspacer id="fb1d8">
+        <constraints>
+          <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="30" height="30"/>
+            <maximum-size width="40" height="40"/>
+          </grid>
+        </constraints>
+      </hspacer>
+      <vspacer id="2f242">
+        <constraints>
+          <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+            <preferred-size width="10" height="10"/>
+            <maximum-size width="20" height="20"/>
+          </grid>
+        </constraints>
+      </vspacer>
+      <vspacer id="3a891">
+        <constraints>
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+            <preferred-size width="10" height="10"/>
+            <maximum-size width="20" height="20"/>
+          </grid>
+        </constraints>
+      </vspacer>
+      <vspacer id="f1cda">
+        <constraints>
+          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+            <preferred-size width="33" height="33"/>
+            <maximum-size width="40" height="40"/>
+          </grid>
+        </constraints>
+      </vspacer>
+      <vspacer id="72863">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+            <preferred-size width="25" height="25"/>
+            <maximum-size width="40" height="40"/>
+          </grid>
+        </constraints>
+      </vspacer>
+    </children>
+  </grid>
+</form>

@@ -1,11 +1,11 @@
-import Interface.firstMenu;
-//import items.*;
+import Interface.FirstMenu;
 
-//import javax.swing.*;
+//import javax.swing.*; //so usar talvez
 
 public class Main {
     public static void main(String[] args){
-        firstMenu start = new firstMenu();
+//      lookAndFeel();  //talvez mudar depois o look and feel
+        FirstMenu start = new FirstMenu();
 
         //   start.exibirMenu(); //menu inicial por enquanto que depois vai ser adaptado com a interface
 
@@ -33,8 +33,19 @@ public class Main {
 //                POSSIVEL IDEIA: talvez a pergunat to tipo de task deveria ser primeiro, o que poderia ser implmenetado com um JComboBox
 //                - vai ser um pouco dificil de fazer o menu de ediçaoe criaçao por causa dessas perguntas
 
-//      tambem esta decidido que vou colocar os checkboxes que vao ser o que vao substituir o botao de toicar como feita a task na screen 2
 
     }
+//    public static void lookAndFeel(){
+//        try {
+//            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) { //verificaçao se o design ta disponivel
+//                if ("GTK+".equalsIgnoreCase(info.getName())) {
+//                    UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) { //exceçoes que podem dar problema p o look and feel
+//            e.printStackTrace();
+//        }
+//    }
 
 }
